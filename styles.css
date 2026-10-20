@@ -1,0 +1,327 @@
+:root {
+  --bg: #000000;
+  --fg: #e8e8e8;
+  --fg-dim: #8a8a8a;
+  --accent: #9fd3ff;
+  --border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Asap", "Segoe UI", sans-serif;
+  font-weight: 600;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 10vh 6vw;
+}
+
+body.fits {
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  max-width: 480px;
+  padding-bottom: 64px;
+}
+
+.banner-wrap {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 0;
+  padding: 30px 22px;
+  isolation: isolate;
+}
+
+.banner-gif {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+.name {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(2.2rem, 7vw, 3.4rem);
+  margin: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.85);
+}
+
+.subtitle {
+  position: relative;
+  z-index: 2;
+  margin: 6px 0 0;
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--fg);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--border);
+  padding: 16px 2px;
+  margin: 0;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--fg);
+  cursor: pointer;
+  text-align: left;
+}
+
+.dropdown-toggle:hover {
+  color: var(--accent);
+}
+
+.chevron {
+  font-size: 0.9rem;
+  color: var(--fg-dim);
+  transition: transform 0.25s ease;
+}
+
+.dropdown-toggle[aria-expanded="true"] .chevron {
+  transform: rotate(180deg);
+}
+
+.dropdown-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+
+.dropdown-wrap.open {
+  grid-template-rows: 1fr;
+}
+
+.dropdown-wrap > ul,
+.dropdown-wrap > .dropdown-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+main > .dropdown-wrap:last-of-type {
+  border-bottom: 1px solid var(--border);
+}
+
+.socials,
+.projects,
+.donations {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.social,
+.project,
+.donation {
+  border-bottom: 1px solid var(--border);
+}
+
+.social:last-child,
+.project:last-child,
+.donation:last-child {
+  border-bottom: none;
+}
+
+.social-row,
+.project a,
+.donation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 2px;
+  text-decoration: none;
+  color: var(--fg);
+  transition: color 0.2s ease;
+}
+
+.project a {
+  align-items: baseline;
+}
+
+a.social-row:hover,
+.project a:hover {
+  color: var(--accent);
+}
+
+a.social-row:hover .social-platform,
+.project a:hover .project-desc {
+  color: var(--accent);
+}
+
+.social-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--fg-dim);
+  transition: color 0.2s ease;
+}
+
+a.social-row:hover .social-icon {
+  color: var(--accent);
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.social-name {
+  font-size: 1.05rem;
+  margin-right: auto;
+  margin-left: 12px;
+}
+
+.social-platform {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--fg-dim);
+  transition: color 0.2s ease;
+}
+
+.project-name {
+  font-size: 1.05rem;
+}
+
+.project-desc {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--fg-dim);
+  text-align: right;
+  transition: color 0.2s ease;
+}
+
+.donation-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--fg-dim);
+}
+
+.donation-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+
+.donation-address {
+  flex: 1;
+  font-family: "Courier New", monospace;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--fg);
+  word-break: break-all;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  padding: 0;
+  background: none;
+  border: none;
+  color: var(--fg-dim);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: var(--accent);
+}
+
+.copy-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.copy-btn .icon-check {
+  display: none;
+}
+
+.copy-btn.copied {
+  color: #7fd79a;
+}
+
+.copy-btn.copied .icon-copy {
+  display: none;
+}
+
+.copy-btn.copied .icon-check {
+  display: block;
+}
+
+.donate-note {
+  margin: 14px 2px 18px;
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+
+.donate-note a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.donate-note a:hover {
+  text-decoration: underline;
+}
+
+.email {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--fg-dim);
+  text-decoration: none;
+}
+
+.email:hover {
+  color: var(--accent);
+}
