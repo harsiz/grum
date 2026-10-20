@@ -259,12 +259,30 @@ const SONGS = [
       opt.addEventListener("click", () => {
         const wasPlaying = playBtn.classList.contains("playing");
         if (i !== current) loadSong(i, wasPlaying);
+        picker.classList.add("dismissed");
         document.activeElement.blur();
       });
       li.appendChild(opt);
       listEl.appendChild(li);
     });
   }
+
+  // Clicking the title while the list is showing closes it. Hover would
+  // otherwise keep it open, so it stays dismissed until the pointer leaves.
+  const currentBtn = document.getElementById("music-current");
+  let listWasOpen = false;
+  currentBtn.addEventListener("pointerdown", () => {
+    listWasOpen = getComputedStyle(listEl).display !== "none";
+  });
+  currentBtn.addEventListener("click", () => {
+    const wasOpen = listWasOpen;
+    listWasOpen = false;
+    if (!picker.classList.contains("multi") || !wasOpen) return;
+    picker.classList.add("dismissed");
+    currentBtn.blur();
+  });
+  picker.addEventListener("pointerleave", () => picker.classList.remove("dismissed"));
+  picker.addEventListener("focusin", () => picker.classList.remove("dismissed"));
 
   loadSong(Math.floor(Math.random() * SONGS.length), false);
 

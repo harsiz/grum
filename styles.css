@@ -617,3 +617,11 @@ a.social-row:hover .social-icon {
     transform: translate(-50%, -50%) rotate(360deg);
   }
 }
+
+.music-picker.multi.dismissed .music-list {
+  display: none;
+}
+
+.music-picker.multi.dismissed .music-chevron {
+  transform: none;
+}
