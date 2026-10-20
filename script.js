@@ -81,6 +81,9 @@
 })();
 
 // Songs are hosted on assets.jshrsz.dev. Shape: { title, artist, src }
+// Small gif shown on the music bar between songs. Falls back to a spinner if empty.
+const LOADING_GIF = "https://assets.jshrsz.dev/u/loading-chibi.gif";
+
 const SONGS = [
   { title: "mosi mosi?", artist: "sanane (cv: saba)", src: "https://assets.jshrsz.dev/u/mosi-mosi-saba.mp3" },
   { title: "mutual panorama", artist: "mitsukiyo ft. aitsuki nakuru", src: "https://assets.jshrsz.dev/u/mutual-pano.mp3" },
@@ -94,6 +97,7 @@ const SONGS = [
 (function musicPlayer() {
   const VOLUME = 0.75;
   const FADE_MS = 700;
+  const NEXT_DELAY_MS = 1000;
 
   const btn = document.getElementById("music-btn");
   const popup = document.getElementById("music-popup");
@@ -108,6 +112,24 @@ const SONGS = [
 
   const picker = document.getElementById("music-picker");
   const listEl = document.getElementById("music-list");
+  const controlsEl = document.getElementById("music-controls");
+  const loadingEl = document.getElementById("music-loading");
+
+  if (LOADING_GIF) loadingEl.style.backgroundImage = 'url("' + LOADING_GIF + '")';
+  else loadingEl.classList.add("spinner");
+
+  let nextTimer = 0;
+
+  function setLoading(on) {
+    loadingEl.hidden = !on;
+    controlsEl.classList.toggle("loading", on);
+  }
+
+  function cancelNext() {
+    clearTimeout(nextTimer);
+    nextTimer = 0;
+    setLoading(false);
+  }
 
   const audio = new Audio();
   audio.preload = "none";
@@ -145,6 +167,7 @@ const SONGS = [
   let current = -1;
 
   function loadSong(i, autoplay) {
+    cancelNext();
     current = i;
     const song = SONGS[i];
     fadeId++;
@@ -205,6 +228,10 @@ const SONGS = [
     audio.currentTime = 0;
     seek.value = "0";
     timeEl.textContent = "0:00";
+    setLoading(true);
+    nextTimer = setTimeout(() => {
+      loadSong((current + 1) % SONGS.length, true);
+    }, NEXT_DELAY_MS);
   });
 
   seek.addEventListener("input", () => {
