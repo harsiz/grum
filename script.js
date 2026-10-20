@@ -85,6 +85,7 @@ const SONGS = [
   { title: "mosi mosi?", artist: "sanane (cv: saba)", src: "https://assets.jshrsz.dev/u/mosi-mosi-saba.mp3" },
   { title: "mutual panorama", artist: "mitsukiyo ft. aitsuki nakuru", src: "https://assets.jshrsz.dev/u/mutual-pano.mp3" },
   { title: "snow halation", artist: "μ's", src: "https://assets.jshrsz.dev/u/snow-halation.mp3" },
+  { title: "galtic love", artist: "ebareshi", src: "https://assets.jshrsz.dev/u/GALticLove.mp3" },
 ];
 
 (function musicPlayer() {
