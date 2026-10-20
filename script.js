@@ -83,6 +83,8 @@
 // Songs are hosted on assets.jshrsz.dev. Shape: { title, artist, src }
 const SONGS = [
   { title: "mosi mosi?", artist: "sanane (cv: saba)", src: "https://assets.jshrsz.dev/u/mosi-mosi-saba.mp3" },
+  { title: "mutual panorama", artist: "mitsukiyo ft. aitsuki nakuru", src: "https://assets.jshrsz.dev/u/mutual-pano.mp3" },
+  { title: "snow halation", artist: "μ's", src: "https://assets.jshrsz.dev/u/snow-halation.mp3" },
 ];
 
 (function musicPlayer() {
@@ -100,13 +102,11 @@ const SONGS = [
 
   btn.hidden = false;
 
-  const song = SONGS[Math.floor(Math.random() * SONGS.length)];
-  titleEl.textContent = song.title;
-  artistEl.textContent = song.artist;
+  const picker = document.getElementById("music-picker");
+  const listEl = document.getElementById("music-list");
 
   const audio = new Audio();
   audio.preload = "none";
-  audio.src = song.src;
   audio.volume = 0;
 
   let fadeId = 0;
@@ -136,6 +136,27 @@ const SONGS = [
   function setPlaying(on) {
     playBtn.classList.toggle("playing", on);
     playBtn.setAttribute("aria-label", on ? "pause" : "play");
+  }
+
+  let current = -1;
+
+  function loadSong(i, autoplay) {
+    current = i;
+    const song = SONGS[i];
+    fadeId++;
+    audio.pause();
+    audio.src = song.src;
+    audio.volume = 0;
+    endFading = false;
+    seek.value = "0";
+    timeEl.textContent = "0:00";
+    titleEl.textContent = song.title;
+    artistEl.textContent = song.artist;
+    setPlaying(false);
+    listEl.querySelectorAll(".music-option").forEach((o, idx) => {
+      o.setAttribute("aria-selected", String(idx === i));
+    });
+    if (autoplay) play();
   }
 
   function play() {
@@ -192,6 +213,29 @@ const SONGS = [
     seeking = false;
     if (audio.duration) audio.currentTime = (seek.value / 1000) * audio.duration;
   });
+
+  if (SONGS.length > 1) {
+    picker.classList.add("multi");
+    SONGS.forEach((song, i) => {
+      const li = document.createElement("li");
+      const opt = document.createElement("button");
+      opt.type = "button";
+      opt.className = "music-option";
+      opt.setAttribute("role", "option");
+      opt.innerHTML = "<span></span><small></small>";
+      opt.firstChild.textContent = song.title;
+      opt.lastChild.textContent = song.artist;
+      opt.addEventListener("click", () => {
+        const wasPlaying = playBtn.classList.contains("playing");
+        if (i !== current) loadSong(i, wasPlaying);
+        document.activeElement.blur();
+      });
+      li.appendChild(opt);
+      listEl.appendChild(li);
+    });
+  }
+
+  loadSong(Math.floor(Math.random() * SONGS.length), false);
 
   function setOpen(open) {
     popup.hidden = !open;

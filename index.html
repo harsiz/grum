@@ -29,9 +29,15 @@
     </button>
 
     <div class="music-popup" id="music-popup" role="dialog" aria-label="music player" hidden>
-      <div class="music-meta">
-        <span class="music-title" id="music-title"></span>
-        <span class="music-artist" id="music-artist"></span>
+      <div class="music-picker" id="music-picker">
+        <button class="music-current" id="music-current" type="button" aria-haspopup="listbox">
+          <span class="music-meta">
+            <span class="music-title" id="music-title"></span>
+            <span class="music-artist" id="music-artist"></span>
+          </span>
+          <span class="chevron music-chevron">⌄</span>
+        </button>
+        <ul class="music-list" id="music-list" role="listbox" aria-label="songs"></ul>
       </div>
       <div class="music-controls">
         <button class="music-play" id="music-play" type="button" aria-label="play">
