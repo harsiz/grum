@@ -16,11 +16,32 @@
 <body>
 
 <main>
-  <div class="banner-wrap">
-    <img class="banner-gif" src="assets/banner.gif" alt="">
-    <div class="banner-overlay"></div>
-    <h1 class="name">harsiz</h1>
-    <p class="subtitle">the art of cryptography</p>
+  <div class="banner-shell">
+    <div class="banner-wrap">
+      <img class="banner-gif" src="assets/banner.gif" alt="">
+      <div class="banner-overlay"></div>
+      <h1 class="name">harsiz</h1>
+      <p class="subtitle">the art of cryptography</p>
+    </div>
+
+    <button class="music-btn" id="music-btn" type="button" aria-label="songs i listen 2" title="songs i listen 2" aria-expanded="false" aria-controls="music-popup" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+    </button>
+
+    <div class="music-popup" id="music-popup" role="dialog" aria-label="music player" hidden>
+      <div class="music-meta">
+        <span class="music-title" id="music-title"></span>
+        <span class="music-artist" id="music-artist"></span>
+      </div>
+      <div class="music-controls">
+        <button class="music-play" id="music-play" type="button" aria-label="play">
+          <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg>
+        </button>
+        <input class="music-seek" id="music-seek" type="range" min="0" max="1000" value="0" step="1" aria-label="seek">
+        <span class="music-time" id="music-time">0:00</span>
+      </div>
+    </div>
   </div>
 
   <button class="dropdown-toggle" id="socials-toggle" aria-expanded="true" aria-controls="socials-list">
