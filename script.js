@@ -86,6 +86,9 @@ const SONGS = [
   { title: "mutual panorama", artist: "mitsukiyo ft. aitsuki nakuru", src: "https://assets.jshrsz.dev/u/mutual-pano.mp3" },
   { title: "snow halation", artist: "μ's", src: "https://assets.jshrsz.dev/u/snow-halation.mp3" },
   { title: "galtic love", artist: "ebareshi", src: "https://assets.jshrsz.dev/u/GALticLove.mp3" },
+  { title: "lunaria", artist: "krimek ft. michiri9", src: "https://assets.jshrsz.dev/u/Krimek%20feat.%20michiri9%20-%20Lunaria.mp3" },
+  { title: "killy killy joker", artist: "kanon wakeshima", src: "https://assets.jshrsz.dev/u/killy%20killy%20JOKER%20%5BW6I1xm49Lpw%5D.mp3" },
+  { title: "wasureji no saihate", artist: "nayuta", src: "https://assets.jshrsz.dev/u/nayuta%20-%20Wasureji%20no%20Saihate.mp3" },
 ];
 
 (function musicPlayer() {
