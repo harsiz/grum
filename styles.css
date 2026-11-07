@@ -795,3 +795,12 @@ a.social-row:hover .social-icon {
 .page-note a:hover {
   text-decoration: underline;
 }
+
+.bot-banner-img.color {
+  filter: none;
+  object-position: 50% 50%;
+}
+
+.lipec-desc {
+  margin-top: 14px;
+}
