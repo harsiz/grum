@@ -54,6 +54,46 @@
   </a>
 
   <p class="page-note">it asks for administrator because it's both a log and mod bot and i'm lazy. no, it won't go rogue and delete your server.</p>
+  <h2 class="cmd-heading">commands</h2>
+  <ol class="cmds">
+    <li>
+      <div class="cmd-line"><code>/config log-channel</code><span class="cmd-tag req">required</span></div>
+      <p>pick your private log channel. nothing gets displayed without this one</p>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/config test</code></div>
+      <p>sends a test embed and warns you about missing permissions, like view audit log</p>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/config detection-rate</code></div>
+      <p>controls how confident the ai has to be before it deletes. default is 60%, but with jev over-flagging images, try 85 to 90 so you get way fewer false positives</p>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/config automod</code></div>
+      <p>has the auto-mod switches. things worth looking at:</p>
+      <ul>
+        <li><code>images:False</code> if the image flagging is still too annoying, text and word list stay on</li>
+        <li><code>strikes</code>, <code>window_minutes</code> and <code>timeout_minutes</code> if you want to change the &ldquo;2 strikes in an hour = 30 min timeout&rdquo; rule</li>
+      </ul>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/config ignore-channel</code></div>
+      <p>for channels you don't want stored or logged, like mod-only channels. nsfw channels are already handled automatically</p>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/automod exempt-role</code><span class="cmd-tag">optional</span></div>
+      <p>for any role that shouldn't be auto-moderated. anyone with manage messages is already exempt</p>
+    </li>
+    <li>
+      <div class="cmd-line"><code>/config panel</code></div>
+      <p>to look over everything at the end and toggle individual events</p>
+    </li>
+  </ol>
+
+  <div class="cmd-extra">
+    <div class="cmd-line"><code>/config route</code><span class="cmd-tag">optional</span></div>
+    <p>only if you want voice logs in a separate channel from message logs, totally optional &#129402;</p>
+  </div>
 </main>
 
 </body>

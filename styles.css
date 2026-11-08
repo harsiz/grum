@@ -804,3 +804,95 @@ a.social-row:hover .social-icon {
 .lipec-desc {
   margin-top: 14px;
 }
+
+.cmd-heading {
+  margin: 28px 0 0;
+  padding: 16px 2px 6px;
+  border-top: 1px solid var(--border);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.cmds {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: cmd;
+}
+
+.cmds > li,
+.cmd-extra {
+  position: relative;
+  padding: 12px 2px 12px 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.cmds > li::before {
+  counter-increment: cmd;
+  content: counter(cmd);
+  position: absolute;
+  left: 2px;
+  top: 14px;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--fg-dim);
+}
+
+.cmd-extra {
+  padding-left: 2px;
+  border-bottom: none;
+}
+
+.cmd-line {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cmds code,
+.cmd-extra code {
+  font-family: "Courier New", monospace;
+  font-size: 0.82rem;
+  color: var(--fg);
+}
+
+.cmds p,
+.cmd-extra p {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+
+.cmds ul {
+  margin: 6px 0 0;
+  padding-left: 16px;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--fg-dim);
+}
+
+.cmds ul li {
+  margin-top: 4px;
+}
+
+.cmds ul code {
+  font-size: 0.75rem;
+}
+
+.cmd-tag {
+  padding: 1px 8px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--fg-dim);
+}
+
+.cmd-tag.req {
+  border-color: var(--accent);
+  color: var(--accent);
+}
